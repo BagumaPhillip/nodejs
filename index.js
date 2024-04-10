@@ -6,6 +6,9 @@ const path = require("path");
 
 require("dotenv").config();
 
+//Importing routes
+const registrationRoutes = require("./routes/registrationRoutes");
+
 //Instantiations
 const app = express();
 
@@ -27,6 +30,7 @@ app.set("view engine", "pug"); //set the view engine to pug
 app.set("views", path.join(__dirname, "views")); //specifying the directory where the views are found
 
 //Middleware
+app.use(express.static(path.join(__dirname, "public")));//set directory for static files
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -34,6 +38,8 @@ app.use(express.json());
 app.get("/registersitter", (req, res) => {
   res.render("register_sitter");
 });
+//use imported routes
+app.use("/", registrationRoutes);
 
 // app.get("/", (req, res) => {
 //   res.send("Homepage! Hello world.");

@@ -1,0 +1,32 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Baby Registration
+  link(rel='stylesheet' href='css/register_baby.css')
+header
+  h1 Welcome to DayStar Daycare
+p This is my index file.
+main
+  form#babyForm(action='registerbaby' method='POST')
+    label(for='name') Name:
+    input#name(type='text' name='name')
+    div
+      label(for='gender') Gender:
+      select#gender(name='gender')
+        option(value='male') Male
+        option(value='female') Female
+    div
+      label(for='age') Age (in months):
+      input#age(type='number' name='age')
+    label(for='location') Location:
+    input#location(type='text' name='location')
+    label(for='parent1') Parent 1 Name:
+    input#parent1(type='text' name='parent1')
+    label(for='parent2') Parent 2 Name:
+    input#parent2(type='text' name='parent2')
+    label(for='babyId') Baby ID Number:
+    input#babyId(type='text' name='babyId')
+    div
+      button(type='submit') Add Baby
+script(src="js/register_baby.js") 

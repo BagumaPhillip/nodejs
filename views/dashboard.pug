@@ -1,0 +1,50 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Dashboard
+  link(rel='stylesheet' href='css/dashboard.css')
+div
+  h2 All registered babies
+  table#babyTable
+    thead
+      tr
+        th Name
+        th Gender
+        th Age (months)
+        th Location
+        th Parent 1 Name
+        th Parent 2 Name
+        th Baby ID Number
+    tbody#babyTableBody
+      // Rows will be populated dynamically
+div
+  h2 Sitter Information
+  table#sitterTable
+    thead
+      tr
+        th Name
+        th Location
+        th Date of Birth
+        th Gender
+        th Next of Kin
+        th National ID Number
+        th Recommender&apos;s Name
+        th Religion
+        th Level of Education
+        th Sitter Number
+        th Phone Number 1
+        th Phone Number 2
+        th Email
+    tbody
+      // Sitter data will be dynamically populated here
+div
+  h2 Accounts Table
+  table
+    thead
+      tr
+        th Name
+        th Password
+    tbody#accountsTableBody
+      // Accounts will be populated dynamically
+script(src='/js/dashboard.js')

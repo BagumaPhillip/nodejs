@@ -1,0 +1,28 @@
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+        border-radius: 20px;
+      }
+
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 12px;
+      }
+
+      th {
+        background-color: #4a85a0;
+      }
+
+      tr:hover {
+        background-color: #a8a4a4;
+      }
+
+      tfoot {
+        font-weight: bold;
+      }

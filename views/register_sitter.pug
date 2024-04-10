@@ -1,0 +1,50 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Document
+  link(rel='stylesheet' href='../public/css/register_sitter.css')
+h2 Register Sitters
+form#sitterForm
+  .form-group
+    label(for='name') Name:
+    input#name(type='text' name='name')
+  .form-group
+    label(for='location') Location:
+    input#location(type='text' name='location')
+  .form-group
+    label(for='dob') Date of Birth:
+    input#dob(type='date' name='dob')
+  .form-group
+    label(for='gender') Gender:
+    select#gender(name='gender')
+      option(value='male') Male
+      option(value='female') Female
+  .form-group
+    label(for='nextOfKin') Next of Kin:
+    input#nextOfKin(type='text' name='nextOfKin')
+  .form-group
+    label(for='nin') National ID Number:
+    input#nin(type='text' name='nin')
+  .form-group
+    label(for='recommender') Recommender&apos;s Name:
+    input#recommender(type='text' name='recommender')
+  .form-group
+    label(for='religion') Religion (Optional):
+    input#religion(type='text' name='religion')
+  .form-group
+    label(for='education') Level of Education:
+    input#education(type='text' name='education')
+  .form-group
+    label(for='sitterNumber') Sitter Number:
+    input#sitterNumber(type='text' name='sitterNumber')
+  .form-group
+    label(for='phone1') Phone Number 1:
+    input#phone1(type='tel' name='phone1')
+  .form-group
+    label(for='phone2') Phone Number 2 (Optional):
+    input#phone2(type='tel' name='phone2')
+  .form-group
+    label(for='email') Email (Optional):
+    input#email(type='email' name='email')
+  button(type='submit') Add Sitter

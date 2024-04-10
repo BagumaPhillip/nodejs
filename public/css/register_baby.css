@@ -1,0 +1,37 @@
+
+      #babyForm {
+        width: 70%;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      #babyForm label {
+        display: block;
+        margin-bottom: 10px;
+      }
+
+      #babyForm input[type="text"],
+      #babyForm select,
+      #babyForm input[type="number"] {
+        width: calc(90% - 10px);
+        margin-right: 10px;
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      #babyForm button {
+        padding: 10px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      #babyForm button:hover {
+        background-color: #45a049;
+      }

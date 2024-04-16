@@ -1,102 +1,117 @@
-//Dependencies
-const express = require("express");
-// const { Mongoose } = require("mongoose");
-const mongoose = require("mongoose");
-const path = require("path");
+// Dependencies
+const express = require("express"); // Importing the express framework
+const mongoose = require("mongoose"); // Importing the mongoose library for MongoDB
+const path = require("path"); // Importing the built-in path module for working with file paths
 
-require("dotenv").config();
+require("dotenv").config(); // Load environment variables from a .env file into process.env
 
-//Importing routes
-const registrationRoutes = require("./routes/registrationRoutes");
+// easy way to set the port we are using. It is used in the app.listen at the bottom
+const port = 3000;
 
-//Instantiations
-const app = express();
+// Importing routes
+const registrationRoutes = require("./routes/registrationRoutes"); // Importing the registrationRoutes module
+const contactRoutes = require("./routes/contactRoutes");
 
-//Configurations
+// Instantiations
+const app = express(); // Creating an instance of an Express application
+
+// Configurations
+// Connecting to the MongoDB database using the connection string stored in environment variables
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
+// Event handlers for MongoDB connection
 mongoose.connection
   .once("open", () => {
-    console.log("Mongoose connection open");
+    console.log("Mongoose connection open"); // Log a message when the connection is open
   })
   .on("error", (err) => {
-    console.error(`Connection error: ${err.message}`);
+    console.error(`Connection error: ${err.message}`); // Log an error message if there is a connection error
   });
 
-app.set("view engine", "pug"); //set the view engine to pug
-app.set("views", path.join(__dirname, "views")); //specifying the directory where the views are found
+// Setting up Express application configurations
+app.set("view engine", "pug"); // Set the view engine to pug for rendering views
+app.set("views", path.join(__dirname, "views")); // Specify the directory where the views are found
 
-//Middleware
-app.use(express.static(path.join(__dirname, "public")));//set directory for static files
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+// Middleware setup
+app.use(express.static(path.join(__dirname, "public"))); // Set directory for static files (e.g., CSS, JS, images)
+app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data from incoming requests
+app.use(express.json()); // Parse JSON data from incoming requests
 
-//Routes
+// Routes setup
+// Use the imported registration routes for requests starting with "/baby"
+app.use("/", registrationRoutes);
+app.use("/", contactRoutes);
+
+// Commented-out routes (for demonstration purposes):
+// These routes handle HTTP GET requests to different paths. You can uncomment them to use them in your application.
+/*
+app.get("/", (req, res) => {
+  res.send("Homepage! Hello world.");
+});
+
+app.get("/about", (req, res) => {
+  res.send("About page. Nice.");
+});
+
 app.get("/registersitter", (req, res) => {
   res.render("register_sitter");
 });
-//use imported routes
-app.use("/", registrationRoutes);
 
-// app.get("/", (req, res) => {
-//   res.send("Homepage! Hello world.");
-// });
-
-// app.get("/about", (req, res) => {
-//   res.send("About page. Nice.");
-// });
-
-// //syntax of a route
-// //app.METHOD(PATH, HANDLER);
-// app.get("/course", (req, res) => {
-//   res.send("You have hit the courses page");
-// });
-
-// // app.get('/books/:bookId', (req, res) => {
-// //   res.send(req.params.bookId);
-// //   console.log(req.params.bookId);
-// // });
-
-// // app.get('/students/:name', (req, res) => {
-// //   res.send("This is my students name " + req.params.name);
-// // });
-
-// app.get("/students/:studentId", (req, res) => {
-//   res.send("This is my students id " + req.params.studentId);
-//   console.log("student Id " + req.params.studentId);
-// });
-
-// //query params
-// app.get("/students", (req, res) => {
-//   res.send("This is class " + req.query.class + "cohort " + req.query.cohort);
-// });
-
-// app.get("/babies", (req, res) => {
-//   res.send("This is baby " + req.query.name + "age " + req.query.age);
-// });
-
-// //Serving html files
-// app.get("/index", (req, res) => {
-//   res.sendFile(__dirname + "/index.html");
-// });
-
-// app.get("/registerbaby", (req, res) => {
-//   res.sendFile(__dirname + "/register_baby.html");
-// });
-
-// app.post("/registerbaby", (req, res) => {
-//   console.log(req.body);
-//   let baby = req.body;
-//   // res.redirect("/index");
-//   res.json({ message: "baby registered", baby });
-// });
-
-// For invalid routes
-app.get("*", (req, res) => {
-  res.send("404! This is an invalid URL.");
+// Route handling for specific paths with different methods
+app.get("/course", (req, res) => {
+  res.send("You have hit the courses page");
 });
-// Bootstrapping the server (app.listen should always be the last line in your code)
-app.listen(3000, () => console.log("listening on port 3000"));
+
+// Route handling with parameters (e.g., bookId)
+app.get('/books/:bookId', (req, res) => {
+  res.send(req.params.bookId);
+  console.log(req.params.bookId);
+});
+
+// Handling routes with parameters (e.g., student's name)
+app.get('/students/:name', (req, res) => {
+  res.send("This is my student's name " + req.params.name);
+});
+
+app.get("/students/:studentId", (req, res) => {
+  res.send("This is my student's id " + req.params.studentId);
+  console.log("student Id " + req.params.studentId);
+});
+
+// Handling routes with query parameters (e.g., class and cohort)
+app.get("/students", (req, res) => {
+  res.send("This is class " + req.query.class + " cohort " + req.query.cohort);
+});
+
+app.get("/babies", (req, res) => {
+  res.send("This is baby " + req.query.name + " age " + req.query.age);
+});
+
+// Serving HTML files
+app.get("/index", (req, res) => {
+  res.sendFile(__dirname + "/index.html");
+});
+
+app.get("/registerbaby", (req, res) => {
+  res.sendFile(__dirname + "/register_baby.html");
+});
+
+app.post("/registerbaby", (req, res) => {
+  console.log(req.body);
+  let baby = req.body;
+  // res.redirect("/index");
+  res.json({ message: "baby registered", baby });
+});
+*/
+
+// Route for handling invalid URLs (404 Not Found)
+app.get("*", (req, res) => {
+  res.send("404! This is an invalid URL."); // Respond with a 404 message for invalid URLs
+});
+
+// Starting the server (this should always be the last line in your code)
+// Listen for incoming requests on port 3000 and log a message when the server starts
+app.listen(port, () => console.log(`Listening on port ${port}`));

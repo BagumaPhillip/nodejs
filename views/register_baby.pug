@@ -3,14 +3,14 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title Baby Registration
-  link(rel='stylesheet' href='css/register_baby.css')
+  link(rel='stylesheet' href='/css/register_baby.css')
 header
   h1 Welcome to DayStar Daycare
 p This is my index file.
 main
-  form#babyForm(action='registerbaby' method='POST')
+  form#babyForm(action='/registerbaby' method='POST')
     label(for='name') Name:
-    input#name(type='text' name='name')
+    input#name(type='text' name='fullName')
     div
       label(for='gender') Gender:
       select#gender(name='gender')
@@ -29,4 +29,3 @@ main
     input#babyId(type='text' name='babyId')
     div
       button(type='submit') Add Baby
-script(src="js/register_baby.js") 

@@ -1,0 +1,60 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Edit data
+  link(rel='stylesheet' href='/css/register_sitter.css')
+  link(rel='stylesheet' href='/css/navbarandlogout.css')
+.navbar
+  nav
+    a(href='#home') Home
+    a(href='#about') About
+    a(href='#services') Services
+    a(href='#contact') Contact
+    a(href='/logout' class='button') Logout
+main
+  form#editSitterForm(action='/sittersUpdate?id='+sitter._id method='POST')
+    h2 Edit Sitter Data.
+    .form-group
+      label(for='name') Name:
+      input#name(type='text' name='fullName' value=sitter.fullName)
+    .form-group
+      label(for='location') Location:
+      input#location(type='text' name='location' value=sitter.location)
+    .form-group
+      label(for='dob') Date of Birth:
+      input#dob(type='date' name='dob' value=sitter.dob)
+    .form-group
+      label(for='gender') Gender:
+      select#gender(name='gender')
+        option(value='male' selected= sitter.gender==='male') Male
+        option(value='female' selected= sitter.gender==='female') Female
+        option(value='other' selected= sitter.gender==='other') Other
+    .form-group
+      label(for='nextOfKin') Next of Kin:
+      input#nextOfKin(type='text' name='nextOfKin' value=sitter.nextOfKin)
+    .form-group
+      label(for='nin') National ID Number:
+      input#nin(type='text' name='nin' value=sitter.nin)
+    .form-group
+      label(for='recommender') Recommender&apos;s Name:
+      input#recommender(type='text' name='recommender' value=sitter.recommender)
+    .form-group
+      label(for='religion') Religion (Optional):
+      input#religion(type='text' name='religion' value=sitter.religion)
+    .form-group
+      label(for='education') Level of Education:
+      input#education(type='text' name='education' value=sitter.education)
+    .form-group
+      label(for='sitterNumber') Sitter Number:
+      input#sitterNumber(type='text' name='sitterNumber' value=sitter.sitterNumber)
+    .form-group
+      label(for='phone1') Phone Number 1:
+      input#phone1(type='tel' name='phone1' value=sitter.phone1)
+    .form-group
+      label(for='phone2') Phone Number 2 (Optional):
+      input#phone2(type='tel' name='phone2' value=sitter.phone2)
+    .form-group
+      label(for='email') Email (Optional):
+      input#email(type='email' name='email' value=sitter.email)
+    button(type='submit') update

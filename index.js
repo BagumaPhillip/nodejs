@@ -2,15 +2,29 @@
 const express = require("express"); // Importing the express framework
 const mongoose = require("mongoose"); // Importing the mongoose library for MongoDB
 const path = require("path"); // Importing the built-in path module for working with file paths
+const passport = require("passport");
+
+const expressSession = require("express-session")({
+  secret: "secret",
+  resave: false,
+  saveUninitialized: false,
+});
 
 require("dotenv").config(); // Load environment variables from a .env file into process.env
+
+//Import adminreg model with user details
+const Reg = require("./models/Register");
 
 // easy way to set the port we are using. It is used in the app.listen at the bottom
 const port = 3000;
 
 // Importing routes
-const registrationRoutes = require("./routes/registrationRoutes"); // Importing the registrationRoutes module
+const registrationRoutes = require("./routes/babyregistrationRoutes"); // Importing the registrationRoutes module
 const contactRoutes = require("./routes/contactRoutes");
+const accRoutes = require("./routes/CreateAccountRoutes");
+const authRoutes = require("./routes/authenticationRoutes");
+const indRoutes = require("./routes/indexRoutes");
+const sitregRoutes = require("./routes/sitterregRoutes");
 
 // Instantiations
 const app = express(); // Creating an instance of an Express application
@@ -35,15 +49,29 @@ mongoose.connection
 app.set("view engine", "pug"); // Set the view engine to pug for rendering views
 app.set("views", path.join(__dirname, "views")); // Specify the directory where the views are found
 
-// Middleware setup
+//MIDDLEWARE setup
 app.use(express.static(path.join(__dirname, "public"))); // Set directory for static files (e.g., CSS, JS, images)
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded data from incoming requests
 app.use(express.json()); // Parse JSON data from incoming requests
+
+// express session configurations
+app.use(expressSession);
+app.use(passport.initialize());
+app.use(passport.session());
+
+// passport configurations
+passport.use(Reg.createStrategy());
+passport.serializeUser(Reg.serializeUser());
+passport.deserializeUser(Reg.deserializeUser());
 
 // Routes setup
 // Use the imported registration routes for requests starting with "/baby"
 app.use("/", registrationRoutes);
 app.use("/", contactRoutes);
+app.use("/", authRoutes);
+app.use("/", accRoutes);
+app.use("/", indRoutes);
+app.use("/", sitregRoutes);
 
 // Commented-out routes (for demonstration purposes):
 // These routes handle HTTP GET requests to different paths. You can uncomment them to use them in your application.

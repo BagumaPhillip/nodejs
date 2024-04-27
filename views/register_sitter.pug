@@ -5,10 +5,10 @@ head
   title Sitter Registration
   link(rel='stylesheet' href='css/register_sitter.css')
 h2 Register Sitters
-form#sitterForm
+form#sitterForm(action='/registersitter' method='POST')
   .form-group
     label(for='name') Name:
-    input#name(type='text' name='name')
+    input#name(type='text' name='fullName')
   .form-group
     label(for='location') Location:
     input#location(type='text' name='location')
@@ -47,4 +47,11 @@ form#sitterForm
   .form-group
     label(for='email') Email (Optional):
     input#email(type='email' name='email')
+  .form-group
+    label(for='password') Password:
+    input#password(type='password' name='password')
+  .form-group
+    label(for='role') Role:
+    select#role(name='role')
+      option(value='sitter') Sitter
   button(type='submit') Add Sitter

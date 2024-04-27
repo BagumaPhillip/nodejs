@@ -1,0 +1,40 @@
+extends layout 
+block content 
+  header 
+    title Babies List
+  main
+    div
+    h2 All registered babies
+    table#babyTable
+      thead
+        tr
+          th Name
+          th Gender
+          th Age (months)
+          th Location
+          th Parent 1 Name
+          th Parent 2 Name
+          th Baby ID
+          th Clock-in 
+          th Update 
+          th Delete 
+      tbody#babyTableBody
+        if babies.length 
+        each baby in babies
+          tr 
+            td #{baby.fullName}
+            td #{baby.gender}
+            td #{baby.age}
+            td #{baby.location}
+            td #{baby.parent1}
+            td #{baby.parent2}
+            td #{baby.babyId}
+            td 
+              a(href='/babyClock-in/'+baby._id) Clock-in  
+            td 
+              a(href='/babiesUpdate/'+baby._id) Update 
+            td 
+              form(method='POST' action='/delete')
+                input(type='hidden' name='id' value=baby._id)
+                button(type='submit') Delete
+  

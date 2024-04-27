@@ -34,7 +34,7 @@ const babyregistrationSchema = new mongoose.Schema({
   babyId: {
     type: String,
     trim: true,
-  },
+  }
 });
 
 module.exports = mongoose.model("Babyregistration", babyregistrationSchema);

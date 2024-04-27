@@ -1,0 +1,57 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Registered Sitters
+  link(rel='stylesheet' href='/css/navbarandlogout.css')
+.navbar
+  nav
+    a(href='#home') Home
+    a(href='#about') About
+    a(href='#services') Services
+    a(href='#contact') Contact
+    a(href='/logout' class='button') Logout
+main
+  div
+  table#sitterTable
+    thead
+      tr
+        th Name
+        th location 
+        th Date of birth
+        th Gender
+        th Next of Kin
+        th National Id
+        th Recommender
+        th Religion
+        th Education
+        th sitterNo.
+        th Phone No.1
+        th Phone No.2
+        th Email
+        th Action
+
+    tbody#sitterTableBody
+      if sitters.length 
+      each sitter in sitters
+        tr 
+          td #{sitter.fullName}
+          td #{sitter.location}
+          td #{sitter.dob}
+          td #{sitter.gender}
+          td #{sitter.nextOfKin}
+          td #{sitter.nin}
+          td #{sitter.recommender}
+          td #{sitter.religion}
+          td #{sitter.education}
+          td #{sitter.sitterNumber}
+          td #{sitter.phone1}
+          td #{sitter.phone2}
+          td #{sitter.email}
+          td 
+            a(href='/sittersUpdate/'+sitter._id) Update 
+          td 
+            form(method='POST' action='/deletesitter')
+              input(type='hidden' name='id' value=sitter._id)
+              button(type='submit') Delete
+

@@ -1,0 +1,21 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Admin Registration Form
+div
+  form(action='/Adminregister' method='POST')
+    div
+      label(for='name') Name:
+      input#fullname(type='text' name='fullName')
+    div
+      label(for='email') Email:
+      input#email(type='email' name='email')
+    div
+      label(for='password') Password:
+      input#password(type='password' name='password')
+    div
+      label(for='role') Role:
+      select#role(name='role')
+        option(value='admin') Administrator    
+    button(type='submit') Register 

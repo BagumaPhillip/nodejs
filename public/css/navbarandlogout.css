@@ -1,0 +1,41 @@
+/* CSS for the navbar */
+.navbar {
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; /* Make the navbar full-width */
+    background-color: #007BFF; /* Navbar background color */
+    padding: 10px;
+    color: white;
+    z-index: 1000; /* Ensure the navbar is on top of other content */
+}
+
+main {
+    margin-top: 70px;
+}
+
+/* CSS for navbar links */
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px; /* Add padding to the links */
+    margin-right: 10px;
+    display: inline-block; /* Display links as inline blocks */
+}
+
+/* Navbar link hover effect */
+.navbar a:hover {
+    background-color: #0056b3;
+    border-radius: 4px; /* Add some rounding to the hover effect */
+}
+
+
+a.button {
+    padding: 1px 6px;
+    border: 1px outset border;
+    border-radius: 3px;
+    color: white;
+    background-color: darkslategray ;
+    text-decoration: none;
+}

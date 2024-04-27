@@ -2,10 +2,10 @@
 const mongoose = require("mongoose");
 
 //Access the shema function in mongoose
-const Schema = mongoose.Schema;
+// const Schema = mongoose.Schema;
 
 //using the function to build the Schema
-const contactSchema = new Schema({
+const contactSchema = new mongoose.Schema({
     email: {type: String},
     password: {type: String, trim: true}, 
     address: {type: String},  

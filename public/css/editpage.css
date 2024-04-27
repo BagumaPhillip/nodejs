@@ -1,0 +1,40 @@
+main {
+    margin-top: 70px;
+}
+
+#editBabyForm {
+    width: 70%;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #editBabyForm label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  #editBabyForm input[type="text"],
+  #editBabyForm select,
+  #editBabyForm input[type="number"] {
+    width: calc(90% - 10px);
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  #editBabyForm button {
+    padding: 10px 20px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  #editBabyForm button:hover {
+    background-color: #45a049;
+  }

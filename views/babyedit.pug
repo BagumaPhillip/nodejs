@@ -1,0 +1,38 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Edit data
+  link(rel='stylesheet' href='/css/editpage.css')
+  link(rel='stylesheet' href='/css/navbarandlogout.css')
+.navbar
+  nav
+    a(href='#home') Home
+    a(href='#about') About
+    a(href='#services') Services
+    a(href='#contact') Contact
+    a(href='/logout' class='button') Logout
+main
+  form#editBabyForm(action='/babiesUpdate?id='+baby._id  method='POST')
+    h2 Edit Baby Data.
+    label(for='name') Name:
+    input#name(type='text' name='fullName' value=baby.fullName)
+    div
+      label(for='gender') Gender:
+      select#gender(name='gender')
+        option(value='male' selected= baby.gender==='male') Male
+        option(value='female' selected= baby.gender==='female') Female
+        option(value='other' selected= baby.gender==='other') Other
+    div
+      label(for='age') Age (in months):
+      input#age(type='number' name='age' value=baby.age)
+    label(for='location') Location:
+    input#location(type='text' name='location' value=baby.location)
+    label(for='parent1') Parent 1 Name:
+    input#parent1(type='text' name='parent1' value=baby.parent1)
+    label(for='parent2') Parent 2 Name:
+    input#parent2(type='text' name='parent2' value=baby.parent2)
+    label(for='babyId') Baby ID:
+    input#babyId(type='text' name='babyId' value=baby.babyId)
+    div
+      button(type='submit') Update

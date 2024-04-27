@@ -3,17 +3,17 @@ head
   meta(charset='UTF-8')
   meta(name='viewport' content='width=device-width, initial-scale=1.0')
   title Login
-   link(rel='stylesheet' href='css/login.css')
+  link(rel='stylesheet' href='css/login.css')
 header
   h1 Welcome to DayStar Daycare
   h2 Where kids shine bright
 main
   section#login
     h2 Login
-    form#loginForm
+    form#loginForm(action='/login' method='POST')
       div
-        label(for='username') Username:
-        input#username(type='text' name='username')
+        label(for='email') Email:
+        input#email(type='text' name='email')
       div
         label(for='password') Password:
         input#password(type='password' name='password')
